@@ -1,5 +1,7 @@
 package com.learn.base;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -18,6 +20,14 @@ public class BaseTest {
 		// Creating Driver
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
+		
+		// Every time the driver does not find an element 
+		// on the page it will wait for 10 seconds
+		
+		//Implicit wait is applied to ALL elements in the Scripts
+		//Explicit wait needs ExpectedConditions
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
 		return driver;
 	}
 
