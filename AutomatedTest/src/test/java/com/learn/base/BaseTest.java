@@ -26,6 +26,8 @@ public class BaseTest {
 		
 		//Implicit wait is applied to ALL elements in the Scripts
 		//Explicit wait needs ExpectedConditions
+		//NOT A GOOD PRACTICE TO 
+		//MAKE ALL TESTS WAIT FOR ELEMENTS
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		return driver;
@@ -34,6 +36,6 @@ public class BaseTest {
 	@AfterMethod(alwaysRun = true)
 	protected void tearDown() {		
 		// Quit Driver
-		driver.quit();;
+		driver.quit();
 	}
 }

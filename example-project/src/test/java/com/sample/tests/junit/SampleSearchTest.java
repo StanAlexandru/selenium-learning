@@ -1,19 +1,29 @@
 package com.sample.tests.junit;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import com.sample.configuration.Configuration;
+import com.sample.configuration.Driver;
 
 public class SampleSearchTest {
 	
-	private ChromeDriver driver;
+	private WebDriver driver;
 
 	@Before
-	public void setUp() {
-		driver = new ChromeDriver();
-		driver.get("http://booking.com");
+	public void setUp() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, FileNotFoundException, IOException {	
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		Driver.init(Configuration.get("browser"), capabilities);
+		driver = Driver.get();
+		driver.get(Configuration.get("url"));
 	}
 	@After
 	public void tearDown() {
